@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Licencias COMPAQi — HardSoft Soluciones</title>
+<meta name="description" content="Detalle de licencias COMPAQi: características, herramientas conectadas y cotización directa vía WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav">
+    <a href="index.html" class="brand">
+      <span class="mark">HS</span>
+      <span>HardSoft Soluciones<small>Distribuidor autorizado COMPAQi</small></span>
+    </a>
+    <nav class="links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="index.html#contacto" class="btn-wsp-nav">Cotizar</a>
+    </nav>
+  </div>
+</header>
+
+<div class="demo-bar">
+  <div class="wrap">
+    <label for="demoSelect">Vista previa — cambiar producto:</label>
+    <select id="demoSelect" aria-label="Elegir producto para vista previa"></select>
+  </div>
+</div>
+
+<main id="main"></main>
+
+<footer>
+  <div class="wrap foot-row">
+    <p>© 2026 HardSoft Soluciones — Distribuidor autorizado de COMPAQi.</p>
+    <div class="foot-links">
+      <a href="index.html">Inicio</a>
+      <a href="index.html#catalogo">Catálogo</a>
+      <a href="index.html#contacto">Contacto</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   Fuente de datos única: la misma estructura de página
+   se reutiliza para cada producto, solo cambia este objeto.
+   ========================================================= */
+const PRODUCTOS = {
+  contabilidad: {
+    folio: "001",
+    nombre: "Contabilidad",
+    tagline: "Contabilidad electrónica, ordenada y a tiempo con el SAT.",
+    descripcion: "Lleva pólizas, balanza y estados financieros de una o varias empresas, y genera los archivos de contabilidad electrónica que pide el SAT sin capturar todo a mano.",
+    caracteristicas: [
+      "Pólizas y balanza de comprobación automáticas",
+      "Estados financieros bajo NIF",
+      "Multiempresa y control de usuarios por permisos",
+      "Reportes para el SAT: Anexo 24, DIOT y más",
+      "Conciliación automática de CFDI recibidos y emitidos",
+      "Reportes comparativos contra presupuesto"
+    ],
+    conecta: ["facturacion", "nomina", "bancos", "comercial"]
+  },
+  facturacion: {
+    folio: "002",
+    nombre: "Facturación Electrónica",
+    tagline: "Emite y timbra CFDI 4.0 sin complicaciones.",
+    descripcion: "Genera y timbra facturas, notas de crédito y recibos de pago desde un solo lugar, con plantillas propias y sin límite de folios.",
+    caracteristicas: [
+      "Timbrado de CFDI 4.0 ilimitado",
+      "Plantillas de factura personalizables",
+      "Complementos de pago automáticos",
+      "Cancelación y reexpedición de comprobantes",
+      "Descarga masiva de XML emitidos y recibidos",
+      "Portal para que tus clientes descarguen su factura"
+    ],
+    conecta: ["contabilidad", "comercial", "timbra"]
+  },
+  nomina: {
+    folio: "003",
+    nombre: "Nóminas",
+    tagline: "Cálculo de sueldos y timbrado de recibos CFDI.",
+    descripcion: "Calcula percepciones, deducciones, ISR e IMSS de tu personal y timbra el recibo de nómina correspondiente en automático.",
+    caracteristicas: [
+      "Cálculo automático de ISR, IMSS e Infonavit",
+      "Timbrado de recibos de nómina CFDI",
+      "Finiquitos, liquidaciones y aguinaldo",
+      "Múltiples periodos y tipos de nómina",
+      "Reportes para Recursos Humanos",
+      "Control de incidencias y faltas"
+    ],
+    conecta: ["contabilidad", "bancos", "timbra"]
+  },
+  comercial: {
+    folio: "004",
+    nombre: "Comercial",
+    tagline: "Control de inventario, compras y ventas.",
+    descripcion: "Administra tu inventario, compras y ventas en tiempo real, con precios, promociones y facturación conectados entre sí.",
+    caracteristicas: [
+      "Inventario en tiempo real por almacén",
+      "Múltiples listas de precios y promociones",
+      "Órdenes de compra y ventas integradas",
+      "Facturación automática desde cada venta",
+      "Reportes de productos más y menos vendidos",
+      "Manejo de múltiples sucursales"
+    ],
+    conecta: ["facturacion", "contabilidad", "puntodeventa"]
+  },
+  bancos: {
+    folio: "005",
+    nombre: "Bancos",
+    tagline: "Concilia tus cuentas bancarias sin hojas de cálculo.",
+    descripcion: "Concilia automáticamente tus movimientos bancarios contra tu contabilidad y ten a la vista tu flujo de efectivo.",
+    caracteristicas: [
+      "Conciliación automática con estados de cuenta",
+      "Control de cheques y transferencias",
+      "Flujo de efectivo actualizado",
+      "Manejo de múltiples bancos y monedas",
+      "Integración directa con Contabilidad",
+      "Alertas de movimientos sin identificar"
+    ],
+    conecta: ["contabilidad", "nomina"]
+  },
+  puntodeventa: {
+    folio: "006",
+    nombre: "Punto de Venta",
+    tagline: "Vende rápido y factura al momento.",
+    descripcion: "Una caja pensada para mostrador: cobra rápido, factura al instante y mantén el inventario sincronizado con Comercial.",
+    caracteristicas: [
+      "Venta rápida en mostrador",
+      "Corte de caja por turno y usuario",
+      "Múltiples formas de pago",
+      "Facturación automática desde cada ticket",
+      "Sincronización con inventario de Comercial",
+      "Funciona con lector de código de barras"
+    ],
+    conecta: ["comercial", "facturacion"]
+  },
+  timbra: {
+    folio: "007",
+    nombre: "Timbra",
+    tagline: "Timbrado masivo de CFDI para grandes volúmenes.",
+    descripcion: "Pensado para despachos y empresas que timbran grandes volúmenes de facturas o recibos de nómina para varios clientes o razones sociales.",
+    caracteristicas: [
+      "Timbrado de comprobantes por lote",
+      "Panel de control multiempresa",
+      "Alta disponibilidad para picos de timbrado",
+      "Reportes de consumo de timbres",
+      "Ideal para despachos contables",
+      "Acceso por roles para tu equipo"
+    ],
+    conecta: ["facturacion", "nomina"]
+  }
+};
+
+const NOMBRE_TAG = {
+  contabilidad:"Contabilidad", facturacion:"Facturación Electrónica", nomina:"Nóminas",
+  comercial:"Comercial", bancos:"Bancos", puntodeventa:"Punto de Venta", timbra:"Timbra"
+};
+
+function getParam(name){
+  return new URLSearchParams(window.location.search).get(name);
+}
+
+function render(slug){
+  const p = PRODUCTOS[slug];
+  const main = document.getElementById("main");
+
+  if (!p){
+    main.innerHTML = `
+      <div class="wrap notfound">
+        <h2>No encontramos esa herramienta</h2>
+        <p><a href="index.html#catalogo">Vuelve al catálogo</a> y elige un producto del listado.</p>
+      </div>`;
+    return;
+  }
+
+  const waTexto = encodeURIComponent(`Hola, quiero cotizar la licencia de COMPAQi ${p.nombre}`);
+
+  main.innerHTML = `
+    <section class="header-prod ruled">
+      <div class="wrap">
+        <span class="eyebrow">COMPAQi · Folio ${p.folio}</span>
+        <h1 class="prod-title">${p.nombre}</h1>
+        <p class="prod-tagline">${p.tagline}</p>
+        <p class="prod-desc">${p.descripcion}</p>
+      </div>
+    </section>
+
+    <section class="section bordered">
+      <div class="wrap">
+        <span class="label">Qué incluye</span>
+        <h2 class="section-title">Características principales</h2>
+        <ul class="features">
+          ${p.caracteristicas.map(c => `<li><span class="tick">✓</span><span>${c}</span></li>`).join("")}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section bordered">
+      <div class="wrap">
+        <span class="label">Recomendado</span>
+        <h2 class="section-title">Se conecta bien con</h2>
+        <div class="conecta-grid">
+          ${p.conecta.map(slugRel => `
+            <a class="conecta-card" href="licencias.html?producto=${slugRel}">
+              <span class="folio">Folio ${PRODUCTOS[slugRel] ? PRODUCTOS[slugRel].folio : "—"}</span>
+              <strong>${NOMBRE_TAG[slugRel] || slugRel}</strong>
+              <span class="tag">Ver ficha →</span>
+            </a>`).join("")}
+        </div>
+      </div>
+    </section>
+
+    <section class="section bordered">
+      <div class="wrap">
+        <div class="cta-band">
+          <div class="cta-left">
+            <svg class="stampmini" viewBox="0 0 100 100" aria-hidden="true">
+              <circle cx="50" cy="50" r="46" fill="none" stroke="#fff" stroke-width="2"/>
+              <text x="50" y="56" font-family="Fraunces, serif" font-size="26" font-weight="600" fill="#fff" text-anchor="middle">HS</text>
+            </svg>
+            <div>
+              <h3>Cotiza tu licencia de ${p.nombre}</h3>
+              <p>Un asesor de HardSoft te ayuda a definir usuarios, empresas y el plan que más te conviene.</p>
+            </div>
+          </div>
+          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/5210000000000?text=${waTexto}">Cotizar por WhatsApp →</a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function buildSelect(activeSlug){
+  const select = document.getElementById("demoSelect");
+  select.innerHTML = Object.keys(PRODUCTOS).map(slug =>
+    `<option value="${slug}" ${slug === activeSlug ? "selected" : ""}>Folio ${PRODUCTOS[slug].folio} — ${PRODUCTOS[slug].nombre}</option>`
+  ).join("");
+  select.addEventListener("change", (e) => {
+    const slug = e.target.value;
+    history.replaceState(null, "", `licencias.html?producto=${slug}`);
+    render(slug);
+    window.scrollTo({ top:0, behavior: "smooth" });
+  });
+}
+
+// producto inicial: parámetro ?producto=slug, o el primero del catálogo por defecto
+const inicial = getParam("producto") && PRODUCTOS[getParam("producto")] ? getParam("producto") : "contabilidad";
+buildSelect(inicial);
+render(inicial);
+</script>
+</body>
+</html>
