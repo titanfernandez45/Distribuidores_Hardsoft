@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* src/app/globals.css */
+
+:root {
+
+  /* Fondo principal de la web (Modo Oscuro Predeterminado) */
+  --bg-main: #0A1325;          /* Azul Marino Profundo (RGB: 10, 19, 37) */
+  
+  /* Fondos secundarios para tarjetas, modales y secciones para generar profundidad */
+  --bg-card: #1E293B;          /* Azul Neutro Oscuro */
+  --bg-header: #0A1325;        /* Headers y Menús principales */
+
+  /* Texto principal para la máxima legibilidad sobre fondo oscuro (Cumple WCAG) */
+  --text-primary: #E2E8F0;     /* Gris Plata / Blanco (RGB: 226, 232, 240) */
+  
+  /* Texto secundario para descripciones menos relevantes o subtítulos */
+  --text-muted: #94A3B8;       /* Gris Medio */
+
+  /* Bordes de contenedores, tarjetas y divisores sutiles */
+  --border-subtle: #1E293B;    /* Límite entre componentes */
+
+
+  /* Call To Action (CTA) - Exclusivo para botones de conversión e interacción */
+  --accent-action: #00A82D;    /* Verde Tecnológico (RGB: 0, 168, 45) */
+  
+  /* Estados e interactividad */
+  --accent-hover: #FFE169;     /* Amarillo Destello (RGB: 255, 225, 105) para efectos hover */
+  
+  /* Destacados, badges y distintivos premium */
+  --accent-gold: #E0A020;      /* Dorado / Ámbar (RGB: 224, 160, 32) */
+}
+
+/* Aplicación global al cuerpo de la aplicación */
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
